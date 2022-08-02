@@ -63,6 +63,7 @@ jobs:
             RELEASE=${{ matrix.RELEASE }} \
             KERNEL_CONFIGURE=no \
             KERNEL_ONLY=no \
+            INSTALL_HEADERS=yes \
             BUILD_MINIMAL=${{ matrix.TYPE == 'minimal' && 'yes' || 'no' }} \
             BUILD_DESKTOP=${{ matrix.TYPE == 'desktop' && 'yes' || 'no' }} \
             DESKTOP_ENVIRONMENT=${{ matrix.DESKTOP_ENVIRONMENT }} \
@@ -137,3 +138,10 @@ jobs:
           tag_name: ${{ env.date }}
           files: |
             output/images/*
+
+      - name: Upload debs to new tag
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.date }}-debs-${{ matrix.RELEASE }}-${{ matrix.BRANCH }}-${{ matrix.TYPE == 'desktop' && matrix.DESKTOP_ENVIRONMENT || matrix.TYPE }}
+          files: |
+            output/debs/*.deb
