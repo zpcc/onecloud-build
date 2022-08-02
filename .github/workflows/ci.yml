@@ -21,7 +21,6 @@ env:
 jobs:
   build:
     name: Build ${{ matrix.RELEASE }}-${{ matrix.BRANCH }}-${{ matrix.TYPE == 'desktop' && matrix.DESKTOP_ENVIRONMENT || matrix.TYPE }}
-    needs: prepare
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
