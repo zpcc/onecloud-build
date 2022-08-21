@@ -16,7 +16,7 @@ env:
   UBOOT_BURNIMG: eMMC.burn.img
   ARMBIAN_REPO: armbian/build
   ARMBIAN_REF: master
-  ARMBIAN_SHA: fa89975db7171e458c0807a964705724270c8131
+  ARMBIAN_SHA: c0a9e7be348974e6892c21f646ba67b35d57fd8b
 
 jobs:
   build:
@@ -49,11 +49,6 @@ jobs:
         with:
           repository: ${{ env.ARMBIAN_REPO }}
           ref: ${{ env.ARMBIAN_SHA }}
-
-      - name: "Apply patch #3981"
-        run: |
-          curl -L -O https://github.com/armbian/build/pull/3981.patch
-          git apply 3981.patch
 
       - name: Build
         run: |
@@ -135,7 +130,7 @@ jobs:
       - name: Upload data to new tag
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ env.date }}
+          tag_name: ${{ env.date }}-test
           files: |
             output/images/*
 
