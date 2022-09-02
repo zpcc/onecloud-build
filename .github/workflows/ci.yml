@@ -16,7 +16,7 @@ env:
   UBOOT_BURNIMG: eMMC.burn.img
   ARMBIAN_REPO: armbian/build
   ARMBIAN_REF: master
-  ARMBIAN_SHA: c0a9e7be348974e6892c21f646ba67b35d57fd8b
+  ARMBIAN_SHA: a57b9ca97f48f4db842c1191ae23c99be868b38d
 
 jobs:
   build:
